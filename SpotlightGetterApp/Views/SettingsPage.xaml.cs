@@ -11,6 +11,7 @@ namespace SpotlightGetterApp.Views
         public SettingsPage()
         {
             InitializeComponent();
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
             _SerializationService = Template10.Services.SerializationService.SerializationService.Json;
         }
 

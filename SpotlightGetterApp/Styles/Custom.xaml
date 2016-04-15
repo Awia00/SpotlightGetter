@@ -10,6 +10,17 @@
     <Color x:Key="ContrastColor">White</Color>
     <Color x:Key="SystemAccentColor">SteelBlue</Color>
 
+    <SolidColorBrush x:Key="IntroductionBrush">SteelBlue</SolidColorBrush>
+    <Style x:Key="IntroductionTextblockStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+    </Style>
+    <Style x:Key="IntroductionTextblockHeaderStyle" TargetType="TextBlock" BasedOn="{StaticResource IntroductionTextblockStyle}">
+        <Setter Property="FontSize" Value="28"/>
+    </Style>
+
     <ResourceDictionary.ThemeDictionaries>
 
         <ResourceDictionary x:Key="Light">

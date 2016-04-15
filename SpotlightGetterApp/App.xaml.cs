@@ -5,7 +5,6 @@ using SpotlightGetterApp.Services.SettingsServices;
 using Windows.ApplicationModel.Activation;
 using Template10.Mvvm;
 using Template10.Common;
-using System;
 using System.Linq;
 
 namespace SpotlightGetterApp
@@ -36,7 +35,7 @@ namespace SpotlightGetterApp
         {
             // long-running startup tasks go here
 
-            NavigationService.Navigate(typeof(Views.MainPage));
+            NavigationService.Navigate(typeof(Views.IntroductionPage));
             await Task.CompletedTask;
         }
     }

@@ -8,7 +8,6 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:SpotlightGetterApp.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:gif="using:XamlAnimatedGif"
       xmlns:vm="using:SpotlightGetterApp.ViewModels" mc:Ignorable="d">
     
 
@@ -94,13 +93,6 @@
                    RelativePanel.AlignLeftWith="parameterResizer"
                    RelativePanel.Below="parameterResizer"
                    Text="Current Visual State" />
-        <Image gif:AnimationBehavior.SourceUri="ms-appx:///Assets/giftest.gif"
-               RelativePanel.AlignLeftWith="stateTextBox"
-               RelativePanel.Below="stateTextBox"
-               Margin="10">
-            
-        </Image>
-    
     </RelativePanel>
 </Page>
 
