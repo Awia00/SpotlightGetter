@@ -26,12 +26,28 @@
                    Style="{StaticResource IntroductionTextblockStyle}">
 
             </TextBlock>
+            <TextBlock x:Name="Paragraph2" Text="Lorem Ipsum"
+                   Style="{StaticResource IntroductionTextblockStyle}">
+
+            </TextBlock>
+            <TextBox x:Name="TextBox1" Text="%localappdata%\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets"
+                   Style="{StaticResource IntroductionTextboxStyle}">
+
+            </TextBox>
+            <Button x:Name="ChooseFolderButton"
+                Style="{StaticResource IntroductionButtonStyle}"
+                Click="{x:Bind ViewModel.PickSpotlightFolder}" Content="Choose Spotlight folder"/>
+            <TextBlock x:Name="Status" Text="{Binding Status}"
+                   Style="{StaticResource IntroductionStatusTextblockStyle}">
+
+            </TextBlock>
         </StackPanel>
         <Border
             RelativePanel.AlignLeftWithPanel="True"
             RelativePanel.AlignRightWithPanel="True"
             RelativePanel.AlignBottomWithPanel="True"
-            RelativePanel.Below="TextStackPanel">
+            RelativePanel.Below="TextStackPanel"
+            Margin="0,50,0,50">
             <Image xamlAnimatedGif:AnimationBehavior.SourceUri="ms-appx:///Assets/giftest.gif">
 
             </Image>

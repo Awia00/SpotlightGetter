@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,18 @@ namespace SpotlightGetterApp.ViewModels
         public IntroductionPageViewModel()
         {
 
+        }
+
+        private string _status = "";
+
+        public string Status
+        {
+            get { return _status; }
+            set
+            {
+                _status = value;
+                base.RaisePropertyChanged();
+            }
         }
 
         #region Actions
@@ -32,6 +45,13 @@ namespace SpotlightGetterApp.ViewModels
                 // (including other sub-folder contents)
                 Windows.Storage.AccessCache.StorageApplicationPermissions.
                 FutureAccessList.AddOrReplace("SpotlightFolder", folder);
+                Status = "Everything went fine - we'll take you to the frontpage";
+                await Task.Delay(1500);
+                NavigationService.Navigate(typeof(Views.MainPage), null);
+            }
+            else
+            {
+                Status = "Something went wrong.";
             }
         }
 

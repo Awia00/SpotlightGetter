@@ -12,13 +12,43 @@
 
     <SolidColorBrush x:Key="IntroductionBrush">SteelBlue</SolidColorBrush>
     <Style x:Key="IntroductionTextblockStyle" TargetType="TextBlock">
+        <Setter Property="Margin" Value="10"/>
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="TextAlignment" Value="Center"/>
     </Style>
-    <Style x:Key="IntroductionTextblockHeaderStyle" TargetType="TextBlock" BasedOn="{StaticResource IntroductionTextblockStyle}">
-        <Setter Property="FontSize" Value="28"/>
+    <Style x:Key="IntroductionStatusTextblockStyle" TargetType="TextBlock">
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="FontStyle" Value="Italic"/>
+        <Setter Property="Foreground" Value="Wheat"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+    </Style>
+    <Style x:Key="IntroductionTextblockHeaderStyle" TargetType="TextBlock" >
+        <Setter Property="Margin" Value="10,0,0,0"/>
+        <Setter Property="FontSize" Value="42"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="IntroductionTextboxStyle" TargetType="TextBox">
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+    </Style>
+
+
+    <Style x:Key="IntroductionButtonStyle" TargetType="Button">
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
 
     <ResourceDictionary.ThemeDictionaries>
