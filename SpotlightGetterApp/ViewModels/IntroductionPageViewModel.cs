@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.Pickers;
+using SpotlightGetterApp.Services.SettingsServices;
 using Template10.Mvvm;
 
 namespace SpotlightGetterApp.ViewModels
@@ -32,22 +34,21 @@ namespace SpotlightGetterApp.ViewModels
 
         public async void PickSpotlightFolder()
         {
-            var folderPicker = new Windows.Storage.Pickers.FolderPicker
+            var folderPicker = new FolderPicker()
             {
-                SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary
+                SuggestedStartLocation = PickerLocationId.DocumentsLibrary
             };
             folderPicker.FileTypeFilter.Add(".txt");
 
-            Windows.Storage.StorageFolder folder = await folderPicker.PickSingleFolderAsync();
-            if (folder != null && folder.Path.Contains(@"Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets"))
+            StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+            if (folder != null && folder.Path.Contains(@"AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets"))
             {
                 // Application now has read/write access to all contents in the picked folder
                 // (including other sub-folder contents)
-                Windows.Storage.AccessCache.StorageApplicationPermissions.
-                FutureAccessList.AddOrReplace("SpotlightFolder", folder);
+                SettingsService.Instance.SpotlightFolder = folder;
                 Status = "Everything went fine - we'll take you to the frontpage";
                 await Task.Delay(1500);
-                NavigationService.Navigate(typeof(Views.MainPage), null);
+                NavigationService.Navigate(typeof(Views.MainPage));
             }
             else
             {
@@ -57,7 +58,7 @@ namespace SpotlightGetterApp.ViewModels
 
         public Action CopyFilesCommand => new Action(async () =>
         {
-            var folder = await Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.GetFolderAsync("PickedFolderToken");
+            var folder = await Task.Run( () => SettingsService.Instance.SpotlightFolder);
             var files = await folder.GetFilesAsync();
             int i = 1;
             foreach (var storageFile in files)
@@ -92,19 +93,18 @@ namespace SpotlightGetterApp.ViewModels
         });
         public Action SaveFilesCommand => new Action(async () =>
         {
-            var folderPicker = new Windows.Storage.Pickers.FolderPicker
+            var folderPicker = new FolderPicker
             {
-                SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary
+                SuggestedStartLocation = PickerLocationId.DocumentsLibrary
             };
             folderPicker.FileTypeFilter.Add(".txt");
 
-            Windows.Storage.StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+            StorageFolder folder = await folderPicker.PickSingleFolderAsync();
             if (folder != null)
             {
                 // Application now has read/write access to all contents in the picked folder
                 // (including other sub-folder contents)
-                Windows.Storage.AccessCache.StorageApplicationPermissions.
-                FutureAccessList.AddOrReplace("Savefolder", folder);
+                SettingsService.Instance.SaveFolder = folder;
             }
             else
             {

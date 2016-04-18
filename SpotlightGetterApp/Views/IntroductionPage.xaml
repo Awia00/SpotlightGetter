@@ -7,26 +7,31 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:SpotlightGetterApp.ViewModels"
     xmlns:xamlAnimatedGif="using:XamlAnimatedGif"
-    mc:Ignorable="d">
-    
+    mc:Ignorable="d" >
+
     <Page.DataContext>
         <vm:IntroductionPageViewModel x:Name="ViewModel" />
     </Page.DataContext>
+    <Page.Resources>
+        <x:String x:Key="WelcomeString">Welcome!</x:String>
+        <x:String x:Key="Paragraph1String">This app allows you to get the current Windows Spotlight pictures right off your own pc - no extra bandwidth required</x:String>
+        <x:String x:Key="Paragraph2String">First we need to get access to the Windows Spotlight folder. To do so copy the url below and click on the button. Then paste the url into the path bar of the file explorer window.</x:String>
+    </Page.Resources>
     <RelativePanel 
         Background="{StaticResource IntroductionBrush}">
         <StackPanel x:Name="TextStackPanel" Orientation="Vertical"
-                    Margin="10"
+                    Margin="40,40,40,20"
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.AlignRightWithPanel="True"
                     RelativePanel.AlignTopWithPanel="True">
-            <TextBlock x:Name="Header" Text="Welcome"
+            <TextBlock x:Name="Header" Text="{StaticResource WelcomeString}"
                    Style="{StaticResource IntroductionTextblockHeaderStyle}">
             </TextBlock>
-            <TextBlock x:Name="Paragraph1" Text="Lorem Ipsum"
+            <TextBlock x:Name="Paragraph1" Text="{StaticResource Paragraph1String}"
                    Style="{StaticResource IntroductionTextblockStyle}">
 
             </TextBlock>
-            <TextBlock x:Name="Paragraph2" Text="Lorem Ipsum"
+            <TextBlock x:Name="Paragraph2" Text="{StaticResource Paragraph2String}"
                    Style="{StaticResource IntroductionTextblockStyle}">
 
             </TextBlock>
@@ -47,11 +52,11 @@
             RelativePanel.AlignRightWithPanel="True"
             RelativePanel.AlignBottomWithPanel="True"
             RelativePanel.Below="TextStackPanel"
-            Margin="0,50,0,50">
+            Margin="0,0,0,50">
             <Image xamlAnimatedGif:AnimationBehavior.SourceUri="ms-appx:///Assets/giftest.gif">
 
             </Image>
         </Border>
-        
+
     </RelativePanel>
 </Page>

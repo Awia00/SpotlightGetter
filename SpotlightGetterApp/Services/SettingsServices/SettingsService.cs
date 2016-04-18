@@ -1,4 +1,6 @@
 using System;
+using Windows.Storage;
+using Windows.Storage.AccessCache;
 using Template10.Common;
 using Template10.Utils;
 using Windows.UI.Xaml;
@@ -8,16 +10,31 @@ namespace SpotlightGetterApp.Services.SettingsServices
     public class SettingsService
     {
         public static SettingsService Instance { get; }
+
+        private readonly ApplicationDataContainer _appSettings = ApplicationData.Current.LocalSettings;
+        private readonly IStorageItemAccessList _accessList = StorageApplicationPermissions.FutureAccessList;
         static SettingsService()
         {
             // implement singleton pattern
             Instance = Instance ?? new SettingsService();
         }
 
-        Template10.Services.SettingsService.ISettingsHelper _helper;
+        readonly Template10.Services.SettingsService.ISettingsHelper _helper;
         private SettingsService()
         {
             _helper = new Template10.Services.SettingsService.SettingsHelper();
+        }
+
+        public StorageFolder SpotlightFolder
+        {
+            get { return _accessList.GetFolderAsync("SpotlightFolder").GetResults(); }
+            set { _accessList.AddOrReplace("SpotlightFolder", value); }
+        }
+
+        public StorageFolder SaveFolder
+        {
+            get { return _accessList.GetFolderAsync("SaveFolder").GetResults(); }
+            set { _accessList.AddOrReplace("SaveFolder", value); }
         }
 
         public bool UseShellBackButton

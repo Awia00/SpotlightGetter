@@ -33,9 +33,11 @@ namespace SpotlightGetterApp
 
         public override async Task OnStartAsync(StartKind startKind, IActivatedEventArgs args)
         {
+            var isSetup = await Task.Run(() => SettingsService.Instance.SpotlightFolder == null || SettingsService.Instance.SaveFolder == null);
             // long-running startup tasks go here
-
-            NavigationService.Navigate(typeof(Views.IntroductionPage));
+            NavigationService.Navigate(isSetup
+                ? typeof (Views.IntroductionPage)
+                : typeof (Views.MainPage));
             await Task.CompletedTask;
         }
     }
