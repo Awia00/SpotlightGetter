@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Template10.Common;
@@ -25,15 +26,21 @@ namespace SpotlightGetterApp.Services.SettingsServices
             _helper = new Template10.Services.SettingsService.SettingsHelper();
         }
 
+        public async Task<StorageFolder> GetSpotlightFolder()
+        {
+            return await _accessList.GetFolderAsync("SpotlightFolder");
+        }
         public StorageFolder SpotlightFolder
         {
-            get { return _accessList.GetFolderAsync("SpotlightFolder").GetResults(); }
             set { _accessList.AddOrReplace("SpotlightFolder", value); }
         }
 
+        public async Task<StorageFolder> GetSaveFolder()
+        {
+            return await _accessList.GetFolderAsync("SaveFolder");
+        }
         public StorageFolder SaveFolder
         {
-            get { return _accessList.GetFolderAsync("SaveFolder").GetResults(); }
             set { _accessList.AddOrReplace("SaveFolder", value); }
         }
 

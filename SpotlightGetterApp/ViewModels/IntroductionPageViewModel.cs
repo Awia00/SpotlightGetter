@@ -56,9 +56,9 @@ namespace SpotlightGetterApp.ViewModels
             }
         }
 
-        public Action CopyFilesCommand => new Action(async () =>
+        public async void CopyFilesCommand()
         {
-            var folder = await Task.Run( () => SettingsService.Instance.SpotlightFolder);
+            var folder = await SettingsService.Instance.GetSpotlightFolder();
             var files = await folder.GetFilesAsync();
             int i = 1;
             foreach (var storageFile in files)
@@ -90,7 +90,9 @@ namespace SpotlightGetterApp.ViewModels
 
                 }
             }
-        });
+            SaveFilesCommand.Invoke();
+        }
+
         public Action SaveFilesCommand => new Action(async () =>
         {
             var folderPicker = new FolderPicker

@@ -42,6 +42,9 @@
             <Button x:Name="ChooseFolderButton"
                 Style="{StaticResource IntroductionButtonStyle}"
                 Click="{x:Bind ViewModel.PickSpotlightFolder}" Content="Choose Spotlight folder"/>
+            <Button x:Name="CopyFolderButton"
+                Style="{StaticResource IntroductionButtonStyle}"
+                Click="{x:Bind ViewModel.CopyFilesCommand}" Content="Copy To save folder"/>
             <TextBlock x:Name="Status" Text="{Binding Status}"
                    Style="{StaticResource IntroductionStatusTextblockStyle}">
 
